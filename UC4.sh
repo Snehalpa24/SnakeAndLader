@@ -1,29 +1,46 @@
 using System;
 
-namespace SnakeandLadder4
+namespace UC4SnakeLadder
 {
-    class Program
+    public class SnakeLadder
     {
-        static int Winner(int N)
+        static void Main(string[] args)
         {
-            int[] dicepos = new int[N];
-            dicepos[0] = 1;
-            dicepos[1] = 2;
-            int i = 2;
-
-            do
+            int position = 0;
+            int Max = 100;
+            int Player1 = 0;
+            while (position < 100)
             {
-                dicepos[i] = dicepos[i - 1] + dicepos[i - 2];
-            } 
-            while (dicepos[i++] <= N);
+                int dice = neww.RollDice();
+                Console.WriteLine("Dice value is : " + dice);
+                int option = neww.getOptions();
+                Console.WriteLine("Option is : " + option);
 
+                switch (option)
+                {
+                    case 2:
+                        position = position + dice;
+                        Console.WriteLine("current position : " + position);
+                        break;
+                    case 1:
+                        if (position <= 0)
+                        {
+                            position = 0;
+                            Console.WriteLine("current position : " + position);
+                        }
+                        else
+                            position = position - dice;
+                        Console.WriteLine("current position : " + position);
+                        break;
+                    default:
+                        position = position;
+                        Console.WriteLine("current position : " + position);
+                        break;
+                }
+            }
+            Player1 = position;
+            Console.WriteLine("Player Position is : " + Player1);
 
-            return (i - 2);
-        }
-        public static void Main()
-        {
-            int N = 100;
-            Console.Write(Winner(N));
         }
     }
 }
